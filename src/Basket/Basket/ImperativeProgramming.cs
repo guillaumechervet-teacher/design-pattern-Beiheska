@@ -9,7 +9,7 @@ namespace Basket
 {
     public class ImperativeProgramming
     {
-        private static int CalculateBasketAmount(List<BasketLineArticle> basketTestBasketLineArticles)
+        public static int CalculateBasketAmount(List<BasketLineArticle> basketTestBasketLineArticles)
         {
             var amountTotal = 0;
             foreach (var basketLineArticle in basketTestBasketLineArticles)
