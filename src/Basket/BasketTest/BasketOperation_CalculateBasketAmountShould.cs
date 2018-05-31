@@ -1,6 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using Basket;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 
 namespace BasketTest
 {
@@ -41,6 +46,7 @@ namespace BasketTest
         [DynamicData("Baskets")]
         public void ReturnCorrectAmoutGivenBasket(BasketOperation_CalculateBasketAmoutShould.BasketTest basketTest)
         {
+            
             var basketTestBasketLineArticles = basketTest.BasketLineArticles;
             var amountTotal = ImperativeProgramming.CalculateBasketAmount(basketTestBasketLineArticles);
             Assert.AreEqual(amountTotal, basketTest.ExpectedPrice);
