@@ -16,6 +16,11 @@ namespace Basket
             {
                 // Retrive article from database
                 string id = basketLineArticle.Id;
+
+                #if DEBUG
+                var article = GetArticleDatabaseMock(id);
+                #else
+                #endif
                 var article = GetArticleDatabase(id);
                 // Calculate amount
                 var amount = 0;
@@ -50,6 +55,44 @@ namespace Basket
                 JsonConvert.DeserializeObject<List<ArticleDatabase>>(File.ReadAllText(jsonPath));
             var article = articleDatabases.First(articleDatabase => { return articleDatabase.Id == id; });
             return article;
+        }
+
+        public static ArticleDatabase GetArticleDatabaseMock(string id)
+        {
+            switch (id)
+            {
+                case "1":
+                    return new ArticleDatabase
+                    {
+                        Id = "1",
+                        Price = 1,
+                        Stock =
+                            35,
+                        Label = "Banana",
+                        Category = "food"
+                    };
+                case "2":
+                    return new ArticleDatabase
+                    {
+                        Id = "2",
+                        Price = 500,
+                        Stock = 20,
+                        Label = "Fridge electrolux",
+                        Category = "electronic"
+                    };
+                case "3":
+                    return new ArticleDatabase
+                    {
+                        Id = "3",
+                        Price = 49,
+                        Stock =
+                            68,
+                        Label = "Chair",
+                        Category = "desktop"
+                    };
+                default:
+                    throw new NotImplementedException();
+            }
         }
     }
 }
